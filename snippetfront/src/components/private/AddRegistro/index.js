@@ -17,20 +17,20 @@ const AddSnippet = ()=>{
   const [direccion, setDireccion] = useState("");
   const [genero, setGenero] = useState("");
   const [profesion, setProfesion] = useState("");
-  const [{ sec }, dispatch] = useSession();
+  //const [{ sec }, dispatch] = useSession();
   //const location = useLocation();
   //const routeHistory = useHistory();
-  //let { from } = location.state || { from : {pathname:"/"}};
+  //let { from } = location.state || { from : {pathname:"/addregistro"}};
   const onClickHandler = async (e)=>{
     e.preventDefault();
     e.stopPropagation();
-    dispatch({ type: SEC_FETCHING });
+    //dispatch({ type: SEC_FETCHING });
     try{
       const { data } = await publicaxios.post(
         "/api/registro/new",
         {id:id,name:name,apellido:apellido,email:email,telefono:telefono,direccion:direccion,genero:genero,profesion:profesion}  
     );
-    dispatch({ type: SEC_LOGIN, payload: data });
+    //dispatch({ type: SEC_LOGIN, payload: data });
     //routeHistory.replace(from);
     } catch(ex){
       

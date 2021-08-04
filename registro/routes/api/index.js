@@ -25,7 +25,7 @@ const securityRouter = require('./security');
 
 router.use("/security", securityRouter);
 
-router.use("/registro", jwtMiddleWare  , registroRoutes);
+router.use("/registro", registroRoutes);
 
 router.get("/utils/ping", jwtMiddleWare, (req, res)=>{
   res.json({"msg":"ok"});

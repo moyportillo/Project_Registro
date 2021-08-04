@@ -31,7 +31,7 @@ function App() {
                   <Route exact path="/login" component={LoginPage}></Route>
                   <Route exact path="/sigin" component={SiginPage}></Route>
 
-                  <PrivateRoute exact path="/mysnippets" component={allPersonsPage}></PrivateRoute>
+                  <PrivateRoute exact path="/listapersonas" component={allPersonsPage}></PrivateRoute>
                   <Route exact path="/" component={Home}></Route>
                   <PrivateRoute exact path="/addregistro" component={AddRegistroPage}></PrivateRoute>
                   

@@ -9,7 +9,7 @@ import {Redirect, Link} from 'react-router-dom';
 
 import InfiniteScroll from 'react-infinite-scroller';
 
-import './MySnippets.css';
+import './Persons.css';
 
 const MySnippets = ()=>{
 
@@ -22,7 +22,7 @@ const MySnippets = ()=>{
         console.log(page, pageToLoad);
         const indexPage = page + 1;
         dispatch({ type: SNIPPET_FETCHING });
-        let { data } = await privateaxios.get(`/api/snippets/facet/${indexPage}/${itemsPages}`);
+        let { data } = await privateaxios.get(`/api/registro/facet/${indexPage}/${itemsPages}`);
         dispatch({ type: SNIPPET_LOAD, payload: data });
       } catch (ex) {
         console.log(ex);
@@ -40,15 +40,17 @@ const MySnippets = ()=>{
     scrollParentRef.current.scrollTo(0, scrollto);
   }, []);
   if (redirect) {
-    return (<Redirect to="/mysnippet"></Redirect>);
+    return (<Redirect to="/listadopersonas"></Redirect>);
   }
 
   const listOfSnippets = snippets.map((o,i)=>{
     return (
       <li key={o._id + i} className="listItem">
         <span className="listDetail">
+          <span>{o.id}</span>
           <span>{o.name}</span>
-          <span>{o.sales}</span>
+          <span>{o.apellido}</span>
+          <span>{o.email}</span>
         </span>
         <span onClick={()=>onClickHandler(o._id)}><MdRemoveRedEye/></span>
       </li>
@@ -57,7 +59,6 @@ const MySnippets = ()=>{
  
   return(
     <Page showHeader title="Listado de Personas Registrados">
-      <Link to="/addsnippet" className="addBtn"><MdAddCircleOutline/></Link>
       <section className="scrollerParent" ref={scrollParentRef}>
         <InfiniteScroll
           hasMore={hasMore}
