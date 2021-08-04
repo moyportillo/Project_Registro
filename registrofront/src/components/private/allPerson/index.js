@@ -4,26 +4,26 @@ import Page from '../../shared/Page/Page';
 import {useEffect, useRef} from 'react';
 import {privateaxios} from '../../../store/axios';
 import { useSession } from '../../../hooks/Session';
-import { SNIPPET_FETCHING, SNIPPET_LOAD, SNIPPET_SETCURRENT } from '../../../store/reducers/snippets';
+import { registro_FETCHING, registro_LOAD, registro_SETCURRENT } from '../../../store/reducers/registros';
 import {Redirect, Link} from 'react-router-dom';
 
 import InfiniteScroll from 'react-infinite-scroller';
 
 import './Persons.css';
 
-const MySnippets = ()=>{
+const Myregistros = ()=>{
 
-  const [{ snippet}, dispatch] = useSession();
-  const { page, itemsPages, snippets, fetching, hasMore, redirect, scrollto} = snippet;
+  const [{ registro}, dispatch] = useSession();
+  const { page, itemsPages, registros, fetching, hasMore, redirect, scrollto} = registro;
 
-  const loadMoreSnippets = async (pageToLoad)=>{
+  const loadMoreregistros = async (pageToLoad)=>{
     if(!fetching && hasMore){
       try {
         console.log(page, pageToLoad);
         const indexPage = page + 1;
-        dispatch({ type: SNIPPET_FETCHING });
+        dispatch({ type: registro_FETCHING });
         let { data } = await privateaxios.get(`/api/registro/facet/${indexPage}/${itemsPages}`);
-        dispatch({ type: SNIPPET_LOAD, payload: data });
+        dispatch({ type: registro_LOAD, payload: data });
       } catch (ex) {
         console.log(ex);
       }
@@ -32,7 +32,7 @@ const MySnippets = ()=>{
 
   const onClickHandler = (_id)=>{
     const scrollToY = scrollParentRef.current.scrollTop;
-    dispatch({ type: SNIPPET_SETCURRENT, payload: { _id: _id, scrollToY: scrollToY}});
+    dispatch({ type: registro_SETCURRENT, payload: { _id: _id, scrollToY: scrollToY}});
   }
   const scrollParentRef = useRef();
 
@@ -43,7 +43,7 @@ const MySnippets = ()=>{
     return (<Redirect to="/listadopersonas"></Redirect>);
   }
 
-  const listOfSnippets = snippets.map((o,i)=>{
+  const listOfregistros = registros.map((o,i)=>{
     return (
       <li key={o._id + i} className="listItem">
         <span className="listDetail">
@@ -64,12 +64,12 @@ const MySnippets = ()=>{
           hasMore={hasMore}
           getScrollParent={()=>scrollParentRef.current}
           loader={(<li className="listItem" key="loaderkeyid">Loading...</li>)}
-          loadMore={loadMoreSnippets}
+          loadMore={loadMoreregistros}
           element="section"
           useWindow={false}
         >
           <ul className="listHolder">
-            {listOfSnippets}
+            {listOfregistros}
           </ul>
         </InfiniteScroll>
       </section>
@@ -77,4 +77,4 @@ const MySnippets = ()=>{
   )
 }
 
-export default MySnippets;
+export default Myregistros;

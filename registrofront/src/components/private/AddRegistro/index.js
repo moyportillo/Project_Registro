@@ -8,7 +8,7 @@ import { publicaxios } from '../../../store/axios';
 import { useHistory , useLocation} from 'react-router-dom';
 import './AddRegistro.css';
 
-const AddSnippet = ()=>{
+const AddRegistro = ()=>{
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [apellido, setApellido] = useState("");
@@ -137,4 +137,4 @@ const AddSnippet = ()=>{
   )
 }
 
-export default AddSnippet;
+export default AddRegistro;

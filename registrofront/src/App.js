@@ -15,7 +15,6 @@ import LoginPage from './components/public/Login/';
 import SiginPage from './components/public/Signin/';
 /* Private Pages */
 import allPersonsPage from './components/private/allPerson';
-import MySnippetPage from './components/private/MySnippet';
 import AddRegistroPage from './components/private/AddRegistro';
 
 import './App.css';
