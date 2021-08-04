@@ -17,8 +17,9 @@ const Menu = ()=>{
   }else {
     return (
       <ul className="Menu">
+        <li><NavLink activeClassName="active" to="/">Inicio</NavLink></li>
         <li><NavLink activeClassName="active" to="/addregistro">Nuevo Registro</NavLink></li>
-        <li><a >Listado</a></li>
+        <li><NavLink activeClassName="active" to="/mysnippets">Listado Personas</NavLink></li>
       </ul>
     );
   }

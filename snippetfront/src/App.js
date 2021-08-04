@@ -14,9 +14,9 @@ import Home from './components/public/Home';
 import LoginPage from './components/public/Login/';
 import SiginPage from './components/public/Signin/';
 /* Private Pages */
-import MySnippetsPage from './components/private/MySnippets';
+import allPersonsPage from './components/private/allPerson';
 import MySnippetPage from './components/private/MySnippet';
-import AddRegistroPage from './components/private/AddSnippet';
+import AddRegistroPage from './components/private/AddRegistro';
 
 import './App.css';
 
@@ -31,8 +31,8 @@ function App() {
                   <Route exact path="/login" component={LoginPage}></Route>
                   <Route exact path="/sigin" component={SiginPage}></Route>
 
-                  <PrivateRoute exact path="/mysnippets" component={MySnippetsPage}></PrivateRoute>
-                  <PrivateRoute exact path="/mysnippet" component={MySnippetPage}></PrivateRoute>
+                  <PrivateRoute exact path="/mysnippets" component={allPersonsPage}></PrivateRoute>
+                  <Route exact path="/" component={Home}></Route>
                   <PrivateRoute exact path="/addregistro" component={AddRegistroPage}></PrivateRoute>
                   
               </Switch>

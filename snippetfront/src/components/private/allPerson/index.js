@@ -56,7 +56,7 @@ const MySnippets = ()=>{
   });
  
   return(
-    <Page showHeader title="My Snippets">
+    <Page showHeader title="Listado de Personas Registrados">
       <Link to="/addsnippet" className="addBtn"><MdAddCircleOutline/></Link>
       <section className="scrollerParent" ref={scrollParentRef}>
         <InfiniteScroll

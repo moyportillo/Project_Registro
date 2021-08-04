@@ -3,7 +3,7 @@ import Field from '../../shared/DataField/DataField';
 
 import {useState} from 'react';
 
-import './AddSnippet.css';
+import './AddRegistro.css';
 const AddSnippet = ()=> {
   const [form, setForm] = useState({name: "", snippet: ""});
   const onChangeHandler = (e)=>{
