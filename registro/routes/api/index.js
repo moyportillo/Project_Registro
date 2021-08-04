@@ -20,12 +20,12 @@ passport.use(
 
 const jwtMiddleWare = passport.authenticate('jwt', {session:false});
 
-const snippetsRoutes = require('./snippets');
+const registroRoutes = require('./registro');
 const securityRouter = require('./security');
 
 router.use("/security", securityRouter);
 
-router.use("/snippets", jwtMiddleWare  , snippetsRoutes);
+router.use("/registro", jwtMiddleWare  , registroRoutes);
 
 router.get("/utils/ping", jwtMiddleWare, (req, res)=>{
   res.json({"msg":"ok"});

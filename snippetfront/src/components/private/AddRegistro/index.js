@@ -1,172 +1,140 @@
+import DataField from  '../../shared/DataField/DataField';
+import Button from '../../shared/Buttons/Button';
 import Page from '../../shared/Page/Page';
-import Field from '../../shared/DataField/DataField';
-
+import {useSession} from '../../../hooks/Session';
 import {useState} from 'react';
-
+import {SEC_LOGIN, SEC_FETCHING} from '../../../store/reducers/sec';
+import { publicaxios } from '../../../store/axios';
+import { useHistory , useLocation} from 'react-router-dom';
 import './AddRegistro.css';
-const AddSnippet = ()=> {
-  const [form, setForm] = useState({name: "", snippet: ""});
-  const onChangeHandler = (e)=>{
+
+const AddSnippet = ()=>{
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [direccion, setDireccion] = useState("");
+  const [genero, setGenero] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [{ sec }, dispatch] = useSession();
+  //const location = useLocation();
+  //const routeHistory = useHistory();
+  //let { from } = location.state || { from : {pathname:"/"}};
+  const onClickHandler = async (e)=>{
     e.preventDefault();
     e.stopPropagation();
-    const { name, value } = e.target;
-    console.log(name, value);
-    const newState = {
-      ...form,
-      [name]:value
+    dispatch({ type: SEC_FETCHING });
+    try{
+      const { data } = await publicaxios.post(
+        "/api/registro/new",
+        {id:id,name:name,apellido:apellido,email:email,telefono:telefono,direccion:direccion,genero:genero,profesion:profesion}  
+    );
+    dispatch({ type: SEC_LOGIN, payload: data });
+    //routeHistory.replace(from);
+    } catch(ex){
+      
     }
-    setForm(newState);
-  }
-  
-  const {name, snippet} = form;
+  };
   return (
-    <Page showHeader title="Nuevo Registro Persona">
-      <section className="nuevoRegistro">
-      <Field
+    <div className = "nuevoRegistro">
+    <Page showHeader={true} title="Inicio de Sesion">
+        <div className="registroInput">
+        <DataField
+          labelText="Identidad"
+          type="id"
+          placeholder="Identificacion"
+          value={id}
           name="id"
           id="id"
-          placeholder="Identidad"
-          type="text"
-          labelText="Identidad"
-          value=""
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="name"
-          id="name"
-          placeholder="Nombre de la persona"
-          type="text"
+          title="identidad"
+          error=""
+          onChange={(e)=>{setId(e.target.value)}}>
+        </DataField>
+        <DataField
           labelText="Nombre"
+          type="name"
+          placeholder="Nombre Persona"
           value={name}
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="apellido"
-          id="apellido"
-          placeholder="Apellido de la persona"
-          type="text"
+          name=""
+          id="name"
+          title="nombre"
+          error=""
+          onChange={(e)=>{setName(e.target.value)}}>
+        </DataField>
+        <DataField
           labelText="Apellido"
-          value=""
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="correo"
-          id="correo"
-          placeholder="correo electronico"
-          type="text"
+          type="apellido"
+          placeholder="Apellido Persona"
+          value={apellido}
+          name=""
+          id="apellido"
+          title="Apellido"
+          error=""
+          onChange={(e)=>{setApellido(e.target.value)}}>
+        </DataField>
+        <DataField
           labelText="Correo"
-          value=""
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="telefono"
-          id="telefono"
-          placeholder="telefono"
-          type="text"
+          type="email"
+          placeholder="Correo Electronico"
+          value={email}
+          name=""
+          id="email"
+          title="email"
+          error=""
+          onChange={(e)=>{setEmail(e.target.value)}}>
+        </DataField>
+        <DataField
           labelText="Telefono"
-          value=""
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="direccion"
-          id="direccion"
-          placeholder="Domicilio"
-          type="text"
+          type="telefono"
+          placeholder="Telefono"
+          value={telefono}
+          name=""
+          id="telefono"
+          title="telefono"
+          error=""
+          onChange={(e)=>{setTelefono(e.target.value)}}>
+        </DataField>
+        <DataField
           labelText="Direccion"
-          value=""
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="genero"
-          id="genero"
-          placeholder="Genero"
-          type="text"
+          type="direccion"
+          placeholder="Direccion"
+          value={direccion}
+          name=""
+          id="direccion"
+          title="direccion"
+          error=""
+          onChange={(e)=>{setDireccion(e.target.value)}}>
+        </DataField>
+        <DataField
           labelText="Genero"
-          value=""
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="profesion"
-          id="profesion"
-          placeholder="Profesion"
-          type="text"
+          type="genero"
+          placeholder="Genero"
+          value={genero}
+          name=""
+          id="genero"
+          title="genero"
+          error=""
+          onChange={(e)=>{setGenero(e.target.value)}}>
+        </DataField>
+        <DataField
           labelText="Profesion"
-          value=""
-          onChange={onChangeHandler}
-        >
-        </Field>
-      </section>
+          type="profesion"
+          placeholder="Profesion"
+          value={profesion}
+          name=""
+          id="profesion"
+          title="profesion"
+          error=""
+          onChange={(e)=>{setProfesion(e.target.value)}}>
+        </DataField>
+        <section style={{padding:"1rem"}}>
+          <Button onClick={onClickHandler}>Agregar</Button>
+        </section>
+        </div>
     </Page>
-    );
+    </div>
+  )
 }
 
 export default AddSnippet;
-
-/*import Page from '../../shared/Page/Page';
-import Field from '../../shared/DataField/DataField';
-
-import {useState} from 'react';
-
-import './AddSnippet.css';
-const AddSnippet = ()=> {
-  const [form, setForm] = useState({id="", name="", apellido="", email="", telefono="", direccion="", genero="", profesion=""});
-  const onChangeHandler = (e)=>{
-    e.preventDefault();
-    e.stopPropagation();
-    const { id, name, apellido, email, telefono, direccion, genero, profesion} = e.target;
-    console.log(id, name, apellido, email, telefono, direccion, genero, profesion);
-    const newState = {
-      ...form,
-      [name]:value
-    }
-    setForm(newState);
-  }
-  const {id, name, apellido, email, telefono, direccion, genero, profesion} = form;
-  return (
-    <Page showHeader title="Nuevo">
-      <section>
-        <Field
-          name="id"
-          id="id"
-          placeholder="identificacion"
-          type="text"
-          labelText="Identidad"
-          value={id}
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="name"
-          id="name"
-          placeholder="Nombre de la persona"
-          type="text"
-          labelText="Nombre"
-          value={name}
-          onChange={onChangeHandler}
-        >
-        </Field>
-        <Field
-          name="snippet"
-          id="snippet"
-          placeholder="Codigo del Snippet"
-          type="textarea"
-          labelText="Nombre"
-          value={snippet}
-          onChange={onChangeHandler}
-          rows="10"
-          style={{minHeight:"40vh"}}
-        >
-        </Field>
-      </section>
-    </Page>
-    );
-}
-
-export default AddSnippet;*/
