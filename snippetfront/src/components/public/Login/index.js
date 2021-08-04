@@ -6,6 +6,7 @@ import {useState} from 'react';
 import {SEC_LOGIN, SEC_FETCHING} from '../../../store/reducers/sec';
 import { publicaxios } from '../../../store/axios';
 import { useHistory , useLocation} from 'react-router-dom';
+import './login.css';
 
 const Login = ()=>{
   const [email, setEmail] = useState("");
@@ -26,10 +27,13 @@ const Login = ()=>{
     dispatch({ type: SEC_LOGIN, payload: data });
     routeHistory.replace(from);
     } catch(ex){
+      
     }
   };
   return (
-    <Page showHeader={true} title="Login">
+    <div className = "login">
+    <Page showHeader={true} title="Inicio de Sesion">
+        <div className="loginInput">
         <DataField
           labelText="Correo Electrónico"
           type="email"
@@ -55,7 +59,9 @@ const Login = ()=>{
         <section style={{padding:"1rem"}}>
           <Button onClick={onClickHandler}>Iniciar Sesión</Button>
         </section>
+        </div>
     </Page>
+    </div>
   )
 }
 

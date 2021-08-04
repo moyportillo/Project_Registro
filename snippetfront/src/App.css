@@ -1,8 +1,8 @@
 .App{
     margin: 0;
-    padding: 0;
-    background-image: url("./image/registro.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  padding: 0;
+  background-image: url("./image/registro.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
