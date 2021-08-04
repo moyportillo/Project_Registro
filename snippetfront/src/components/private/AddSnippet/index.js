@@ -19,12 +19,22 @@ const AddSnippet = ()=> {
   }
   const {name, snippet} = form;
   return (
-    <Page showHeader title="Nuevo">
-      <section>
+    <Page showHeader title="Nuevo Registro Persona">
+      <section className="nuevoRegistro">
+      <Field
+          name="id"
+          id="id"
+          placeholder="Identidad"
+          type="text"
+          labelText="Identidad"
+          value=""
+          onChange={onChangeHandler}
+        >
+        </Field>
         <Field
           name="name"
           id="name"
-          placeholder="Nombre del Snippet"
+          placeholder="Nombre de la persona"
           type="text"
           labelText="Nombre"
           value={name}
@@ -32,15 +42,63 @@ const AddSnippet = ()=> {
         >
         </Field>
         <Field
-          name="snippet"
-          id="snippet"
-          placeholder="Codigo del Snippet"
-          type="textarea"
-          labelText="Nombre"
-          value={snippet}
+          name="apellido"
+          id="apellido"
+          placeholder="Apellido de la persona"
+          type="text"
+          labelText="Apellido"
+          value=""
           onChange={onChangeHandler}
-          rows="10"
-          style={{minHeight:"40vh"}}
+        >
+        </Field>
+        <Field
+          name="correo"
+          id="correo"
+          placeholder="correo electronico"
+          type="text"
+          labelText="Correo"
+          value=""
+          onChange={onChangeHandler}
+        >
+        </Field>
+        <Field
+          name="telefono"
+          id="telefono"
+          placeholder="telefono"
+          type="text"
+          labelText="Telefono"
+          value=""
+          onChange={onChangeHandler}
+        >
+        </Field>
+        <Field
+          name="direccion"
+          id="direccion"
+          placeholder="Domicilio"
+          type="text"
+          labelText="Direccion"
+          value=""
+          onChange={onChangeHandler}
+        >
+        </Field>
+        <Field
+          name="genero"
+          id="genero"
+          placeholder="Genero"
+          type="text"
+          labelText="Genero"
+          value=""
+          onChange={onChangeHandler}
+        >
+        </Field>
+        <Field
+          name="profesion"
+          id="profesion"
+          placeholder="Profesion"
+          type="text"
+          labelText="Profesion"
+          value=""
+          onChange={onChangeHandler}
         >
         </Field>
       </section>

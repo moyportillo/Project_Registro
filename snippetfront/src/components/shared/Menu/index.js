@@ -11,16 +11,14 @@ const Menu = ()=>{
     return (
       <ul className="Menu">
         <li><NavLink activeClassName="active" to='/login'>Login</NavLink></li>
-        <li><NavLink activeClassName="active" to='/sigin'>Signin</NavLink></li>
+        <li><NavLink activeClassName="active" to='/signin'>Signin</NavLink></li>
       </ul>
     );
   }else {
     return (
       <ul className="Menu">
-        <li><NavLink activeClassName="active" to="/mysnippets">Snippets</NavLink></li>
-        <li><a >Dashboard</a></li>
-        <li><a >Profile</a></li>
-        <li><a >Upload</a></li>
+        <li><NavLink activeClassName="active" to="/addregistro">Nuevo Registro</NavLink></li>
+        <li><a >Listado</a></li>
       </ul>
     );
   }
