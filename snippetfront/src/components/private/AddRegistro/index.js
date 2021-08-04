@@ -17,6 +17,7 @@ const AddSnippet = ()=> {
     }
     setForm(newState);
   }
+  
   const {name, snippet} = form;
   return (
     <Page showHeader title="Nuevo Registro Persona">
