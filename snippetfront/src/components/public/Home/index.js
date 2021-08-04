@@ -1,10 +1,11 @@
 import Page from '../../shared/Page/Page';
+import './Home.css';
 
 const Home = ()=>{
   return (
-    <Page showHeader title="Snippets V1">
-      <section>
-          <h1>Bienvenido al Registro del personal</h1>
+    <Page showHeader title="Control de Registro de Personas">
+      <section className = "Home">
+          <h1>Bienvenido al Registro</h1>
       </section>
     </Page>
   )

@@ -6,6 +6,7 @@ import {useState} from 'react';
 import {SEC_LOGIN, SEC_FETCHING} from '../../../store/reducers/sec';
 import { publicaxios } from '../../../store/axios';
 import { useHistory , useLocation} from 'react-router-dom';
+
 const Login = ()=>{
   const [email, setEmail] = useState("");
   const [pswd, setPassword] = useState("");
@@ -25,7 +26,6 @@ const Login = ()=>{
     dispatch({ type: SEC_LOGIN, payload: data });
     routeHistory.replace(from);
     } catch(ex){
-      //Dispacth del error
     }
   };
   return (

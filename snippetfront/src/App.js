@@ -10,8 +10,6 @@ import mainReducer from "./store/";
 import PrivateRoute from './components/shared/PrivateRoute';
 import Menu from './components/shared/Menu/';
 /* Public Pages */
-
-import SplashScreen from './components/public/SplashScreen/';
 import Home from './components/public/Home';
 import LoginPage from './components/public/Login/';
 import SiginPage from './components/public/Signin/';
@@ -26,7 +24,6 @@ function App() {
   let appSession = mainReducer();
   return (
     <SessionProvider initialState={appSession} reducer={mainReducer}>
-    <SplashScreen>
         <Router>
           <div className="App">
               <Switch>
@@ -42,7 +39,6 @@ function App() {
               <Menu login={false}></Menu>
           </div>
         </Router>
-      </SplashScreen>
     </SessionProvider>
   );
 }
