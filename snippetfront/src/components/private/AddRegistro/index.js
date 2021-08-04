@@ -38,7 +38,7 @@ const AddSnippet = ()=>{
   };
   return (
     <div className = "nuevoRegistro">
-    <Page showHeader={true} title="Inicio de Sesion">
+    <Page showHeader={true} title="Registro de Persona">
         <div className="registroInput">
         <DataField
           labelText="Identidad"

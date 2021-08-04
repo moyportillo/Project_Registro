@@ -6,7 +6,7 @@ const {
   addOne,
   getById
  
-} = require('./snippets.model');
+} = require('./registro.model');
 
 router.get(
   "/",

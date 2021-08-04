@@ -1,14 +1,14 @@
 const MongoDB = require('../../utilities/db');
 const ObjectId = require('mongodb').ObjectID;
 let db;
-let snippetCollection;
+let registroCollection;
 
 //se ejecuta cuando se manda a require(este archivo)
 (async function(){
     try{
-      if (!snippetCollection) {
+      if (!registroCollection) {
         db = await MongoDB.getDB();
-        snippetCollection = db.collection("Registro");
+        registroCollection = db.collection("Registro");
         if(process.env.ENSURE_INDEX == 1){
           // Vamos a asegurarnos de que exista el indice
         }
@@ -21,7 +21,7 @@ let snippetCollection;
 
 module.exports.getAll = async ()=>{
   try {
-    let docsCursor = snippetCollection.find({});
+    let docsCursor = registroCollection.find({});
     let rows = await docsCursor.toArray()
     return rows;
   } catch(ex){
@@ -39,7 +39,7 @@ module.exports.getAllFacet = async (page, itemsPerPage) => {
       sort:[["name", 1]]
     };
 
-    let docsCursor = snippetCollection.find({}, options);
+    let docsCursor = registroCollection.find({}, options);
     let rownum = await docsCursor.count();
     let rows = await docsCursor.toArray()
     return {rownum, rows};
@@ -53,7 +53,7 @@ module.exports.getById = async (id)=>{
   try {
     const _id = new ObjectId(id);
     const filter =  {_id: _id};
-    let row = await snippetCollection.findOne(filter);
+    let row = await registroCollection.findOne(filter);
     return row;
   } catch(ex){
     console.log(ex);
@@ -75,7 +75,7 @@ module.exports.addOne = async (id, name, apellido, email, telefono, direccion, g
       profesion:profesion,
       user:user
     };
-    let result = await snippetCollection.insertOne(newRegistro);
+    let result = await registroCollection.insertOne(newRegistro);
     return result.ops;
   }catch(ex){
     console.log(ex);
